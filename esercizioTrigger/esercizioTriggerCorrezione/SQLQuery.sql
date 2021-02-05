@@ -1,0 +1,241 @@
+﻿								-------------------------------- CREATE TABLE ------------------------------
+			---- Driver --
+--CREATE TABLE [dbo].[Driver] (
+--    [number]         INT            NOT NULL,
+--    [full_name]      VARCHAR (100)  NOT NULL,
+--    [country]        CHAR (2)       NOT NULL,
+--    [date_birth]     DATE           NOT NULL,
+--    [team_id]        INT            NOT NULL,
+--    [podiums_number] INT            NOT NULL,
+--    [helmet_image]   VARCHAR (1000) NOT NULL,
+--    [full_image]     VARCHAR (1000) NOT NULL,
+--    PRIMARY KEY CLUSTERED ([number] ASC)
+--);
+
+			---- StoricoAggiornamenti (Primo esercizio in cui si salva il valore di tutti i campi) --
+--CREATE TABLE [dbo].[StoricoAggiornamenti] (
+--    [id]                INT            IDENTITY (1, 1) NOT NULL,
+--    [number]            INT            NULL,
+--    [oldNumber]         INT            NULL,
+--    [full_name]         VARCHAR (100)  NULL,
+--    [oldFull_name]      VARCHAR (100)  NULL,
+--    [country]           CHAR (2)       NULL,
+--    [oldCountry]        CHAR (2)       NULL,
+--    [date_birth]        DATE           NULL,
+--    [oldDate_birth]     DATE           NULL,
+--    [team_id]           INT            NULL,
+--    [oldTeam_id]        INT            NULL,
+--    [podiums_number]    INT            NULL,
+--    [oldPodiums_number] INT            NULL,
+--    [helmet_image]      VARCHAR (1000) NULL,
+--    [oldHelmet_image]   VARCHAR (1000) NULL,
+--    [full_image]        VARCHAR (1000) NULL,
+--    [oldFull_image]     VARCHAR (1000) NULL,
+--    [date_time]         DATETIME       NULL,
+--    PRIMARY KEY CLUSTERED ([id] ASC)
+--);
+
+			---- StoricoAggiornamenti2 (Secondo esercizio in cui, in questa tabella, salvo solo la data della modifica) --
+--CREATE TABLE [dbo].[StoricoAggiornamenti2] (
+--    [ID]   INT  IDENTITY (1, 1) NOT NULL,
+--    [Data] DATE NULL,
+--    PRIMARY KEY CLUSTERED ([ID] ASC)
+--);
+
+			---- StoricoAggiornamentiCampi (Secondo esercizio in cui, in questa tabella, salvo solo i dati dei campi modificati) --
+--CREATE TABLE [dbo].[StoricoAggiornamentiCampi] (
+--    [Id]                     INT            IDENTITY (1, 1) NOT NULL,
+--    [IdStoricoAggiornamenti] INT            NOT NULL,
+--    [NomeCampo]              VARCHAR (1000) NULL,
+--    [ValoreCampoOld]         VARCHAR (1000) NULL,
+--    [ValoreCampoNew]         VARCHAR (1000) NULL,
+--    PRIMARY KEY CLUSTERED ([Id] ASC)
+--);
+
+			---- StoricoCancellazioni (Tabella in cui salvo i record che vengono eliminati dalla tabella Driver)
+--CREATE TABLE [dbo].[StoricoCancellazioni] (
+--    [id]             INT            IDENTITY (1, 1) NOT NULL,
+--    [number]         INT            NULL,
+--    [full_name]      VARCHAR (100)  NULL,
+--    [country]        CHAR (2)       NULL,
+--    [date_birth]     DATE           NULL,
+--    [team_id]        INT            NULL,
+--    [podiums_number] INT            NULL,
+--    [helmet_image]   VARCHAR (1000) NULL,
+--    [full_image]     VARCHAR (1000) NULL,
+--    [date_time]      DATETIME       NULL,
+--    PRIMARY KEY CLUSTERED ([id] ASC)
+--);
+
+								-------------------------------- TRIGGERS ------------------------------
+			---- deleteDriver --
+--CREATE TRIGGER deleteDriver ON Driver
+--FOR DELETE AS DECLARE
+--@number int,
+--@full_name varchar(100),
+--@country char(2),
+--@date_birth date,
+--@team_id int,
+--@podiums_number int,
+--@helmet_image varchar(255),
+--@full_image varchar(255)
+
+--SET @number = (SELECT number FROM deleted)
+--SET @full_name = (SELECT full_name FROM deleted)
+--SET @country = (SELECT country FROM deleted)
+--SET @date_birth = (SELECT date_birth FROM deleted)
+--SET @team_id = (SELECT team_id FROM deleted)
+--SET @podiums_number = (SELECT podiums_number FROM deleted)
+--SET @helmet_image = (SELECT helmet_image FROM deleted)
+--SET @full_image = (SELECT full_image FROM deleted)
+
+--INSERT INTO StoricoCancellazioni (number, full_name, country, date_birth, team_id, podiums_number, helmet_image, full_image, date_time)
+--VALUES (@number, @full_name, @country, @date_birth, @team_id, @podiums_number, @helmet_image, @full_image, GETDATE())
+
+			---- updateDriver (primo esercizio) -- 
+--CREATE TRIGGER updateDriver ON Driver
+--FOR UPDATE AS DECLARE 
+--@number int,
+--@oldNumber int,
+--@full_name varchar(100),
+--@oldFull_name varchar(100),
+--@country char(2),
+--@oldCountry char(2),
+--@date_birth date,
+--@oldDate_birth date,
+--@team_id int,
+--@oldTeam_id int,
+--@podiums_number int,
+--@oldPodiums_number int,
+--@helmet_image varchar(1000),
+--@oldHelmet_image varchar(1000),
+--@full_image varchar(1000),
+--@oldFull_image varchar(1000),
+--@date_time datetime
+
+--SET @number = (SELECT number FROM inserted)
+--SET @oldNumber = (SELECT number FROM deleted)
+--SET @full_name = (SELECT full_name FROM inserted)
+--SET @oldFull_name = (SELECT full_name FROM deleted)
+--SET @country = (SELECT country FROM inserted)
+--SET @oldCountry = (SELECT country FROM deleted)
+--SET @date_birth = (SELECT date_birth FROM inserted)
+--SET @oldDate_birth = (SELECT date_birth FROM deleted)
+--SET @team_id = (SELECT team_id FROM inserted)
+--SET @oldTeam_id = (SELECT team_id FROM deleted)
+--SET @podiums_number = (SELECT podiums_number FROM inserted)
+--SET @oldPodiums_number = (SELECT podiums_number FROM deleted)
+--SET @helmet_image = (SELECT helmet_image FROM inserted)
+--SET @oldHelmet_image = (SELECT helmet_image FROM deleted)
+--SET @full_image = (SELECT full_image FROM inserted)
+--SET @oldFull_image = (SELECT full_image FROM deleted)
+
+--INSERT INTO StoricoAggiornamenti (number, oldNumber, full_name, oldFull_name, country, oldCountry, date_birth, 
+--oldDate_birth, team_id, oldTeam_id, podiums_number, oldPodiums_number, helmet_image, oldHelmet_image, full_image, oldFull_image, date_time)
+--VALUES (@number, @oldNumber, @full_name, @oldFull_name, @country, @oldCountry, @date_birth, @oldDate_birth, 
+--@team_id, @oldTeam_id, @podiums_number, @oldPodiums_number, @helmet_image, @oldHelmet_image, @full_image, @oldFull_image, GETDATE())
+
+			---- updateDriver2 (secondo esercizio) --
+--CREATE TRIGGER updateDriver2 ON DRIVER
+--AFTER UPDATE AS
+--BEGIN DECLARE 
+--@number int,
+--@oldNumber int,
+--@full_name varchar(100),
+--@oldFull_name varchar(100),
+--@country char(2),
+--@oldCountry char(2),
+--@date_birth date,
+--@oldDate_birth date,
+--@team_id int,
+--@oldTeam_id int,
+--@podiums_number int,
+--@oldPodiums_number int,
+--@helmet_image varchar(1000),
+--@oldHelmet_image varchar(1000),
+--@full_image varchar(1000),
+--@oldFull_image varchar(1000),
+--@date_time datetime,
+--@editedField varchar(255),
+--@idStoricoAggiornamenti int,
+--@data date
+
+--SET @data = GETDATE()
+
+--INSERT INTO StoricoAggiornamenti2(Data) VALUES (@data);
+
+--SET @number = (SELECT number FROM inserted)
+--SET @oldNumber = (SELECT number FROM deleted)
+--SET @full_name = (SELECT full_name FROM inserted)
+--SET @oldFull_name = (SELECT full_name FROM deleted)
+--SET @country = (SELECT country FROM inserted)
+--SET @oldCountry = (SELECT country FROM deleted)
+--SET @date_birth = (SELECT date_birth FROM inserted)
+--SET @oldDate_birth = (SELECT date_birth FROM deleted)
+--SET @team_id = (SELECT team_id FROM inserted)
+--SET @oldTeam_id = (SELECT team_id FROM deleted)
+--SET @podiums_number = (SELECT podiums_number FROM inserted)
+--SET @oldPodiums_number = (SELECT podiums_number FROM deleted)
+--SET @helmet_image = (SELECT helmet_image FROM inserted)
+--SET @oldHelmet_image = (SELECT helmet_image FROM deleted)
+--SET @full_image = (SELECT full_image FROM inserted)
+--SET @oldFull_image = (SELECT full_image FROM deleted)
+--SET @idStoricoAggiornamenti = (SELECT MAX(ID) FROM StoricoAggiornamenti2)
+
+--IF(@number<>@oldNumber)
+--	BEGIN
+--		SET @editedField = 'Number'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldNumber, @number)
+--	END
+
+--IF(@full_name<>@oldFull_name)
+--	BEGIN
+--		SET @editedField = 'Full name'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldFull_name, @full_name)
+--	END
+
+--IF(@country<>@oldCountry)
+--	BEGIN
+--		SET @editedField = 'Country'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldCountry, @country)
+--	END
+
+--IF(@date_birth<>@oldDate_birth)
+--	BEGIN
+--		SET @editedField = 'DOB'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldDate_birth, @date_birth)
+--	END
+
+--IF(@team_id<>@oldTeam_id)
+--	BEGIN
+--		SET @editedField = 'Team ID'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldTeam_id, @team_id)
+--	END
+
+--IF(@podiums_number<>@oldPodiums_number)
+--	BEGIN
+--		SET @editedField = 'Podiums number'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldPodiums_number, @podiums_number)
+--	END
+
+--IF(@helmet_image<>@oldHelmet_image)
+--	BEGIN
+--		SET @editedField = 'Helmet image'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldHelmet_image, @helmet_image)
+--	END
+
+--IF(@full_image<>@oldFull_image)
+--	BEGIN
+--		SET @editedField = 'Full image'
+--		INSERT INTO StoricoAggiornamentiCampi (IdStoricoAggiornamenti, nomeCampo, valoreCampoOld, valoreCampoNew) 
+--		VALUES (@idStoricoAggiornamenti, @editedField, @oldFull_image, @full_image)
+--	END
+
+--END
