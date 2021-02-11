@@ -46,13 +46,14 @@ namespace esercizioTriggerCorrezione
         {
             int podiumsNumber = int.Parse(Interaction.InputBox("Inserisci numero di podi"));
             SqlConnection sqlConnection = new SqlConnection(CONNECTION_STRING);
-            string sql = "SELECT dbo.ES2(" + podiumsNumber + ")";
+            string sql = "SELECT dbo.ES2(@value)";
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+            cmd.Parameters.AddWithValue("@value", podiumsNumber);
             sqlConnection.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
+            SqlDataReader rd = cmd.ExecuteReader();
+            while (rd.Read())
             {
-                MessageBox.Show("Numero piloti: "+reader.GetInt32(0).ToString());
+                MessageBox.Show("Numero piloti: " + rd.GetInt32(0).ToString());
             }
             sqlConnection.Close();
         }
