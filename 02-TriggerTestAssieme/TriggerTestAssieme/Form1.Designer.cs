@@ -34,9 +34,13 @@ namespace TriggerTestAssieme
             this.dgvStoricoAggiornamenti = new System.Windows.Forms.DataGridView();
             this.btnAggDB = new System.Windows.Forms.Button();
             this.btnSP = new System.Windows.Forms.Button();
+            this.dgvStoricoAggiornamentiSP = new System.Windows.Forms.DataGridView();
+            this.dgvStoricoCancellazioniSP = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDriver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoCancellazioni)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoAggiornamenti)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoAggiornamentiSP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoCancellazioniSP)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvDriver
@@ -92,11 +96,29 @@ namespace TriggerTestAssieme
             this.btnSP.UseVisualStyleBackColor = true;
             this.btnSP.Click += new System.EventHandler(this.btnSP_Click);
             // 
+            // dgvStoricoAggiornamentiSP
+            // 
+            this.dgvStoricoAggiornamentiSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStoricoAggiornamentiSP.Location = new System.Drawing.Point(13, 475);
+            this.dgvStoricoAggiornamentiSP.Name = "dgvStoricoAggiornamentiSP";
+            this.dgvStoricoAggiornamentiSP.Size = new System.Drawing.Size(662, 245);
+            this.dgvStoricoAggiornamentiSP.TabIndex = 5;
+            // 
+            // dgvStoricoCancellazioniSP
+            // 
+            this.dgvStoricoCancellazioniSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStoricoCancellazioniSP.Location = new System.Drawing.Point(13, 726);
+            this.dgvStoricoCancellazioniSP.Name = "dgvStoricoCancellazioniSP";
+            this.dgvStoricoCancellazioniSP.Size = new System.Drawing.Size(662, 245);
+            this.dgvStoricoCancellazioniSP.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 450);
+            this.ClientSize = new System.Drawing.Size(690, 991);
+            this.Controls.Add(this.dgvStoricoCancellazioniSP);
+            this.Controls.Add(this.dgvStoricoAggiornamentiSP);
             this.Controls.Add(this.btnSP);
             this.Controls.Add(this.btnAggDB);
             this.Controls.Add(this.dgvStoricoAggiornamenti);
@@ -108,6 +130,8 @@ namespace TriggerTestAssieme
             ((System.ComponentModel.ISupportInitialize)(this.dgvDriver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoCancellazioni)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoAggiornamenti)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoAggiornamentiSP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStoricoCancellazioniSP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -119,6 +143,8 @@ namespace TriggerTestAssieme
         private System.Windows.Forms.DataGridView dgvStoricoAggiornamenti;
         private System.Windows.Forms.Button btnAggDB;
         private System.Windows.Forms.Button btnSP;
+        private System.Windows.Forms.DataGridView dgvStoricoAggiornamentiSP;
+        private System.Windows.Forms.DataGridView dgvStoricoCancellazioniSP;
     }
 }
 

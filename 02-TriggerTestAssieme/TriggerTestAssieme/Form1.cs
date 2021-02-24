@@ -50,7 +50,7 @@ namespace TriggerTestAssieme
             using (SqlConnection con = new SqlConnection(CONNECTION_STRING))
             {
                 con.Open();
-                string sql = "restituisciDati";
+                string sql = "restituisciDatiAggiornamenti";
                 SqlCommand cmd = new SqlCommand(sql, con);
 
                 SqlParameter data = new SqlParameter();
@@ -65,7 +65,24 @@ namespace TriggerTestAssieme
                 SqlDataReader reader = cmd.ExecuteReader();
                 DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
-                dgvDriver.DataSource = reader;
+                dgvStoricoAggiornamentiSP.DataSource = dataTable;
+
+                sql = "restituisciDatiCancellazioni";
+                cmd = new SqlCommand(sql, con);
+
+                data = new SqlParameter();
+                data.ParameterName = "data";
+                data.Direction = ParameterDirection.Input;
+                data.DbType = DbType.DateTime;
+                data.Value = dt;
+                cmd.Parameters.Add(data);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                reader = cmd.ExecuteReader();
+                dataTable = new DataTable();
+                dataTable.Load(reader);
+                dgvStoricoCancellazioniSP.DataSource = dataTable;
             }
         }
 
