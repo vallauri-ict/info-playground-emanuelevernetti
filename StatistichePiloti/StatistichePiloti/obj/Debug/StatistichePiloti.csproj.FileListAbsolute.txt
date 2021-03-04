@@ -1,0 +1,10 @@
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\bin\Debug\StatistichePiloti.exe.config
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\bin\Debug\StatistichePiloti.exe
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\bin\Debug\StatistichePiloti.pdb
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.csprojAssemblyReference.cache
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.FormMain.resources
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.Properties.Resources.resources
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.csproj.GenerateResource.cache
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.csproj.CoreCompileInputs.cache
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.exe
+C:\Users\emanu\source\repos\StatistichePiloti\StatistichePiloti\obj\Debug\StatistichePiloti.pdb
